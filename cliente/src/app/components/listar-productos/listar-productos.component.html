@@ -1,43 +1,49 @@
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <div class="card">
-                <div class="card-body text-center">
-                    <span class="titulo"> Listado de productos</span>
-                    <button class="btn btn-success float-end" routerLink="/crear-producto">Nuevo</button>
-                    <table class="table table-striped mt-3">
-                        <thead>
-                          <tr>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Ubicacion</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col"></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Tarjeta Madre Asus</td>
-                            <td>Componentes</td>
-                            <td>España</td>
-                            <td>3569</td>
-                            <td><i class="fas fa-trash text-danger"></i>
-                              <i class="fas fa-edit text-primary"></i></td>
-                          </tr>
-                          <tr>
-                            <td> i5 8500H</td>
-                            <td>Procesador</td>
-                            <td>Argentina</td>
-                            <td>2560</td>
-                            <td><i class="fas fa-trash text-danger"></i>
-                              <i class="fas fa-edit text-primary"></i></td>
-                            
-                          </tr>
-                        </tbody>
-                      </table>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo"> Listado de productos</span>
+          <button
+            class="btn btn-success float-end"
+            routerLink="/crear-producto"
+          >
+            Nuevo
+          </button>
+          <table
+            *ngIf="listProductos.length > 0"
+            class="table table-striped mt-3"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Ubicacion</th>
+                <th scope="col">Precio</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let producto of listProductos">
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.categoria }}</td>
+                <td>{{ producto.ubicacion }}</td>
+                <td>{{ producto.precio | currency: "USD" }}</td>
+                <td>
+                  <i
+                    (click)="eliminarProducto(producto._id)"
+                    class="fas fa-trash text-danger"
+                  ></i>
+                  <i class="fas fa-edit text-primary"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 *ngIf="listProductos.length == 0">
+            No hay productos registrados
+          </h5>
         </div>
+      </div>
     </div>
-
+  </div>
 </div>
