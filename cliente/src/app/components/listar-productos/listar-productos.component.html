@@ -34,7 +34,10 @@
                     (click)="eliminarProducto(producto._id)"
                     class="fas fa-trash text-danger"
                   ></i>
-                  <i class="fas fa-edit text-primary"></i>
+                  <i
+                    [routerLink]="['/editar-producto', producto._id]"
+                    class="fas fa-edit text-primary"
+                  ></i>
                 </td>
               </tr>
             </tbody>
